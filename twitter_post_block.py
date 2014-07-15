@@ -6,6 +6,7 @@ from requests_oauthlib import OAuth1
 from nio.common.block.base import Block
 from nio.common.discovery import Discoverable, DiscoverableType
 from nio.metadata.properties.object import ObjectProperty
+from nio.metadata.properties.holder import PropertyHolder
 from nio.metadata.properties.expression import ExpressionProperty
 from nio.metadata.properties.string import StringProperty
 from nio.modules.threading.imports import Thread
@@ -35,12 +36,12 @@ class TwitterPost(Block):
     creds = ObjectProperty(TwitterCreds)
     
     def __init__(self):
-        d
+        super().__init__()
         self._auth = None
     
     def start(self):
         super().start()
-        self._authorize()
+        self._auth = self._authorize()
 
     def process_signals(self, signals):
         for s in signals:
@@ -61,13 +62,17 @@ class TwitterPost(Block):
             self._post_tweet(data)
 
     def _post_tweet(self, data):
-        response = requests.post(POST_URL, auth=self._auth,
-                                 data=json.dumps(data))
+        response = requests.post(POST_URL, data=data,
+                                 auth=self._auth)
                                  
         status = response.status_code
         if status != 200:
             self._logger.error(
                 "Twitter post failed with status {0}".format(status)
+            )
+        else:
+            self._logger.debug(
+                "Posted '{0}' to Twitter!".format(data['status'])
             )
 
     def _authorize(self):
@@ -82,7 +87,7 @@ class TwitterPost(Block):
             resp = requests.get(VERIFY_CREDS_URL, auth=auth)
             if resp.status_code != 200:
                 raise Exception("Status %s" % resp.status_code)
-            self._auth = auth
+            return auth
         except Exception:
             self._logger.error("Authentication Failed"
                                "for consumer key: %s" %
