@@ -23,17 +23,17 @@ class TwitterCreds(PropertyHolder):
     """ Property holder for Twitter OAuth credentials.
 
     """
-    consumer_key = StringProperty()
-    app_secret = StringProperty()
-    oauth_token = StringProperty()
-    oauth_token_secret = StringProperty()
+    consumer_key = StringProperty(title='Consumer Key')
+    app_secret = StringProperty(title='App Secret')
+    oauth_token = StringProperty(title='OAuth Token')
+    oauth_token_secret = StringProperty(title='OAuth Token Secret')
 
 
 @Discoverable(DiscoverableType.block)
 class TwitterPost(Block):
     
-    status = ExpressionProperty(default='')
-    creds = ObjectProperty(TwitterCreds)
+    status = ExpressionProperty(default='', title='Status Update')
+    creds = ObjectProperty(TwitterCreds, title='Credentials')
     
     def __init__(self):
         super().__init__()
