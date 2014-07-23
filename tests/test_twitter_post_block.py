@@ -1,6 +1,6 @@
 import json
 from unittest.mock import patch
-from twitter_post.twitter_post_block import TwitterPost
+from ..twitter_post_block import TwitterPost
 from nio.common.signal.base import Signal
 from nio.util.support.block_test_case import NIOBlockTestCase
 
