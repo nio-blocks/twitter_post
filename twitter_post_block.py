@@ -1,5 +1,6 @@
 import requests
 import json
+from urllib.parse import quote
 import oauth2 as oauth
 from requests_oauthlib import OAuth1
 
@@ -61,8 +62,8 @@ class TwitterPost(Block):
             data = {'status': status}
             self._post_tweet(data)
 
-    def _post_tweet(self, data):
-        response = requests.post(POST_URL, data=data,
+    def _post_tweet(self, payload):
+        response = requests.post(POST_URL, data=payload,
                                  auth=self._auth)
                                  
         status = response.status_code
@@ -72,7 +73,7 @@ class TwitterPost(Block):
             )
         else:
             self._logger.debug(
-                "Posted '{0}' to Twitter!".format(data['status'])
+                "Posted '{0}' to Twitter!".format(payload['status'])
             )
 
     def _authorize(self):
