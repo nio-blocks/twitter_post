@@ -1,4 +1,4 @@
-twitter_post
+Twitter REST API Blocks
 ============
 
-Block for Tweeting
+Blocks that interact with Twitter's [REST API](https://dev.twitter.com/rest/public).
