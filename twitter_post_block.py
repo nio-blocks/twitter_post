@@ -16,7 +16,8 @@ from nio.modules.threading import Thread
 VERIFY_CREDS_URL = ('https://api.twitter.com/1.1/'
                     'account/verify_credentials.json')
 POST_URL = "https://api.twitter.com/1.1/statuses/update.json"
-MAX_TWEET_LEN = 140
+# TODO: ignore links in tweet length calc
+MAX_TWEET_LEN = 150
 
 
 class TwitterCreds(PropertyHolder):
@@ -32,14 +33,14 @@ class TwitterCreds(PropertyHolder):
 
 @Discoverable(DiscoverableType.block)
 class TwitterPost(Block):
-    
+
     status = ExpressionProperty(default='', title='Status Update')
     creds = ObjectProperty(TwitterCreds, title='Credentials')
-    
+
     def __init__(self):
         super().__init__()
         self._auth = None
-    
+
     def start(self):
         super().start()
         self._auth = self._authorize()
@@ -58,14 +59,14 @@ class TwitterPost(Block):
                         type(e).__name__, str(e))
                 )
                 continue
-                
+
             data = {'status': status}
             self._post_tweet(data)
 
     def _post_tweet(self, payload):
         response = requests.post(POST_URL, data=payload,
                                  auth=self._auth)
-                                 
+
         status = response.status_code
         if status != 200:
             self._logger.error(
