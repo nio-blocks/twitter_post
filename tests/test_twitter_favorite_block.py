@@ -6,9 +6,8 @@ from nio.util.support.block_test_case import NIOBlockTestCase
 
 class TestTwitterFavorite(NIOBlockTestCase):
 
-    @patch('twitter_rest.twitter_favorite_block.TwitterFavorite._authorize')
-    @patch('twitter_rest.twitter_favorite_block.'
-           'TwitterFavorite._favorite_tweet')
+    @patch.object(TwitterFavorite, '_authorize')
+    @patch.object(TwitterFavorite, '_favorite_tweet')
     def test_process_signal(self, mock_post, mock_auth):
         signals = [Signal({'id': 123})]
         blk = TwitterFavorite()
@@ -18,9 +17,8 @@ class TestTwitterFavorite(NIOBlockTestCase):
         mock_post.assert_called_once_with({'id': signals[0].id})
         blk.stop()
 
-    @patch('twitter_rest.twitter_favorite_block.TwitterFavorite._authorize')
-    @patch('twitter_rest.twitter_favorite_block.'
-           'TwitterFavorite._favorite_tweet')
+    @patch.object(TwitterFavorite, '_authorize')
+    @patch.object(TwitterFavorite, '_favorite_tweet')
     def test_process_multiple(self, mock_post, mock_auth):
         signals = [
             Signal({'id': 123}),
@@ -34,9 +32,8 @@ class TestTwitterFavorite(NIOBlockTestCase):
         self.assertEqual(mock_post.call_count, len(signals))
         blk.stop()
 
-    @patch('twitter_rest.twitter_favorite_block.TwitterFavorite._authorize')
-    @patch('twitter_rest.twitter_favorite_block.'
-           'TwitterFavorite._favorite_tweet')
+    @patch.object(TwitterFavorite, '_authorize')
+    @patch.object(TwitterFavorite, '_favorite_tweet')
     def test_bad_config(self, mock_post, mock_auth):
         signals = [Signal({'id': 123})]
         blk = TwitterFavorite()
@@ -48,9 +45,8 @@ class TestTwitterFavorite(NIOBlockTestCase):
         self.assertEqual(mock_post.call_count, 0)
         blk.stop()
 
-    @patch('twitter_rest.twitter_favorite_block.TwitterFavorite._authorize')
-    @patch('twitter_rest.twitter_favorite_block.'
-           'TwitterFavorite._favorite_tweet')
+    @patch.object(TwitterFavorite, '_authorize')
+    @patch.object(TwitterFavorite, '_favorite_tweet')
     def test_bad_id(self, mock_post, mock_auth):
         signals = [Signal({'id': 'asdf'})]
         blk = TwitterFavorite()

@@ -6,9 +6,8 @@ from nio.util.support.block_test_case import NIOBlockTestCase
 
 class TestTwitterRetweet(NIOBlockTestCase):
 
-    @patch('twitter_rest.twitter_retweet_block.TwitterRetweet._authorize')
-    @patch('twitter_rest.twitter_retweet_block.'
-           'TwitterRetweet._retweet_tweet')
+    @patch.object(TwitterRetweet, '_authorize')
+    @patch.object(TwitterRetweet, '_retweet_tweet')
     def test_process_signal(self, mock_post, mock_auth):
         signals = [Signal({'id': 123})]
         blk = TwitterRetweet()
@@ -18,9 +17,8 @@ class TestTwitterRetweet(NIOBlockTestCase):
         mock_post.assert_called_once_with(signals[0].id)
         blk.stop()
 
-    @patch('twitter_rest.twitter_retweet_block.TwitterRetweet._authorize')
-    @patch('twitter_rest.twitter_retweet_block.'
-           'TwitterRetweet._retweet_tweet')
+    @patch.object(TwitterRetweet, '_authorize')
+    @patch.object(TwitterRetweet, '_retweet_tweet')
     def test_process_multiple(self, mock_post, mock_auth):
         signals = [
             Signal({'id': 123}),
@@ -34,9 +32,8 @@ class TestTwitterRetweet(NIOBlockTestCase):
         self.assertEqual(mock_post.call_count, len(signals))
         blk.stop()
 
-    @patch('twitter_rest.twitter_retweet_block.TwitterRetweet._authorize')
-    @patch('twitter_rest.twitter_retweet_block.'
-           'TwitterRetweet._retweet_tweet')
+    @patch.object(TwitterRetweet, '_authorize')
+    @patch.object(TwitterRetweet, '_retweet_tweet')
     def test_bad_config(self, mock_post, mock_auth):
         signals = [Signal({'id': 123})]
         blk = TwitterRetweet()
@@ -48,9 +45,8 @@ class TestTwitterRetweet(NIOBlockTestCase):
         self.assertEqual(mock_post.call_count, 0)
         blk.stop()
 
-    @patch('twitter_rest.twitter_retweet_block.TwitterRetweet._authorize')
-    @patch('twitter_rest.twitter_retweet_block.'
-           'TwitterRetweet._retweet_tweet')
+    @patch.object(TwitterRetweet, '_authorize')
+    @patch.object(TwitterRetweet, '_retweet_tweet')
     def test_bad_id(self, mock_post, mock_auth):
         signals = [Signal({'id': 'asdf'})]
         blk = TwitterRetweet()
