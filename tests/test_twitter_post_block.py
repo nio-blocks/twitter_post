@@ -6,8 +6,8 @@ from nio.util.support.block_test_case import NIOBlockTestCase
 
 
 class TestTwitterPost(NIOBlockTestCase):
-    @patch(TwitterPost, '_authorize')
-    @patch(TwitterPost, '_post_tweet')
+    @patch.object(TwitterPost, '_authorize')
+    @patch.object(TwitterPost, '_post_tweet')
     def test_process_post(self, mock_post, mock_auth):
         signals = [Signal({'foo': 'test signal'})]
         blk = TwitterPost()
@@ -21,8 +21,8 @@ class TestTwitterPost(NIOBlockTestCase):
         mock_post.assert_called_once_with({'status': signals[0].foo})
         blk.stop()
 
-    @patch(TwitterPost, '_authorize')
-    @patch(TwitterPost, '_post_tweet')
+    @patch.object(TwitterPost, '_authorize')
+    @patch.object(TwitterPost, '_post_tweet')
     def test_process_multiple(self, mock_post, mock_auth):
         signals = [
             Signal({'foo': 'test signal'}),
