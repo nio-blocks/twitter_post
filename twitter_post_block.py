@@ -16,10 +16,6 @@ from nio.modules.threading import Thread
 VERIFY_CREDS_URL = ('https://api.twitter.com/1.1/'
                     'account/verify_credentials.json')
 POST_URL = "https://api.twitter.com/1.1/statuses/update.json"
-# TWITTER_URL_VALIDATOR = re.compile(r'\A(?:([^:/?#]+)://)?([^/?#]*)([^?#]*)(?:\?([^#]*))?(?:\#(.*))?\Z')
-
-# TODO: ignore links in tweet length calc
-MAX_TWEET_LEN = 140
 
 
 class TwitterCreds(PropertyHolder):
