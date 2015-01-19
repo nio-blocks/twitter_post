@@ -16,8 +16,6 @@ from nio.modules.threading import Thread
 VERIFY_CREDS_URL = ('https://api.twitter.com/1.1/'
                     'account/verify_credentials.json')
 POST_URL = "https://api.twitter.com/1.1/statuses/update.json"
-# TODO: ignore links in tweet length calc
-MAX_TWEET_LEN = 150
 
 
 class TwitterCreds(PropertyHolder):
@@ -49,10 +47,6 @@ class TwitterPost(Block):
         for s in signals:
             try:
                 status = self.status(s)
-                if len(status) > MAX_TWEET_LEN:
-                    raise RuntimeError(
-                        "Status update exceeds {0} character limit".format(
-                            MAX_TWEET_LEN))
             except Exception as e:
                 self._logger.error(
                     "Status evaluation failed: {0}: {1}".format(
@@ -69,9 +63,17 @@ class TwitterPost(Block):
 
         status = response.status_code
         if status != 200:
-            self._logger.error(
-                "Twitter post failed with status {0}".format(status)
-            )
+            try:
+                response = response.json()
+                self._logger.error(
+                    "Twitter post failed with status {0}".format(status)
+                )
+                if 186 in [e.get('code') for e in response.get('errors')]:
+                    self._logger.error("Status is over 140 characters")
+            except Exception as e:
+                self._logger.error(
+                    "Failed to process error response: {}: {}".format(
+                        type(e).__name__, str(e)))
         else:
             self._logger.debug(
                 "Posted '{0}' to Twitter!".format(payload['status'])
@@ -91,6 +93,6 @@ class TwitterPost(Block):
                 raise Exception("Status %s" % resp.status_code)
             return auth
         except Exception:
-            self._logger.error("Authentication Failed"
+            self._logger.error("Authentication Failed "
                                "for consumer key: %s" %
                                self.creds.consumer_key)
