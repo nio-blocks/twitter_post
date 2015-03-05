@@ -5,8 +5,6 @@ from nio.common.discovery import Discoverable, DiscoverableType
 from nio.metadata.properties import ExpressionProperty
 
 
-VERIFY_CREDS_URL = ('https://api.twitter.com/1.1/'
-                    'account/verify_credentials.json')
 POST_URL = "https://api.twitter.com/1.1/statuses/update.json"
 
 
@@ -19,19 +17,15 @@ class TwitterPost(TwitterRestBase):
         for s in signals:
             try:
                 status = self.status(s)
-            except Exception as e:
-                self._logger.error(
-                    "Status evaluation failed: {0}: {1}".format(
-                        type(e).__name__, str(e))
-                )
+            except Exception:
+                self._logger.exception("Status evaluation failed")
                 continue
 
             data = {'status': status}
             self._post_tweet(data)
 
     def _post_tweet(self, payload):
-        response = requests.post(POST_URL, data=payload,
-                                 auth=self._auth)
+        response = requests.post(POST_URL, data=payload, auth=self._auth)
 
         status = response.status_code
         if status != 200:
@@ -42,11 +36,8 @@ class TwitterPost(TwitterRestBase):
                 )
                 if 186 in [e.get('code') for e in response.get('errors')]:
                     self._logger.error("Status is over 140 characters")
-            except Exception as e:
-                self._logger.error(
-                    "Failed to process error response: {}: {}".format(
-                        type(e).__name__, str(e)))
+            except Exception:
+                self._logger.exception("Failed to process error response")
         else:
             self._logger.debug(
-                "Posted '{0}' to Twitter!".format(payload['status'])
-            )
+                "Posted '{0}' to Twitter!".format(payload['status']))
