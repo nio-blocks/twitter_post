@@ -1,23 +1,23 @@
 import requests
 from .twitter_rest_base_block import TwitterRestBase
-from nio.common.discovery import Discoverable, DiscoverableType
-from nio.metadata.properties.expression import ExpressionProperty
+from nio.util.discovery import discoverable
+from nio.properties import Property
 
 
 POST_URL = "https://api.twitter.com/1.1/favorites/create.json"
 
 
-@Discoverable(DiscoverableType.block)
+@discoverable
 class TwitterFavorite(TwitterRestBase):
 
-    id = ExpressionProperty(default='{{$id}}', title='Tweet ID')
+    id = Property(default='{{$id}}', title='Tweet ID')
 
     def process_signals(self, signals):
         for s in signals:
             try:
                 id = self.id(s)
             except Exception as e:
-                self._logger.error(
+                self.logger.error(
                     "ID evaluation failed: {0}: {1}".format(
                         type(e).__name__, str(e))
                 )
@@ -25,7 +25,7 @@ class TwitterFavorite(TwitterRestBase):
             try:
                 id = int(id)
             except Exception as e:
-                self._logger.error(
+                self.logger.error(
                     "ID {} is not an integer: {}".format(id, e)
                 )
                 continue
@@ -37,13 +37,13 @@ class TwitterFavorite(TwitterRestBase):
                                  auth=self._auth)
         status = response.status_code
         if status != 200:
-            self._logger.error(
+            self.logger.error(
                 "Twitter favorite {} failed with status {}".format(
                     payload['id'],
                     status
                 )
             )
         else:
-            self._logger.debug(
+            self.logger.debug(
                 "Favorited tweet with id {}.".format(payload['id'])
             )

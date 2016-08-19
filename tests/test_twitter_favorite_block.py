@@ -1,7 +1,7 @@
 from unittest.mock import patch, MagicMock
 from ..twitter_favorite_block import TwitterFavorite
-from nio.common.signal.base import Signal
-from nio.util.support.block_test_case import NIOBlockTestCase
+from nio.signal.base import Signal
+from nio.testing.block_test_case import NIOBlockTestCase
 
 
 class TestTwitterFavorite(NIOBlockTestCase):
@@ -38,10 +38,10 @@ class TestTwitterFavorite(NIOBlockTestCase):
         signals = [Signal({'id': 123})]
         blk = TwitterFavorite()
         self.configure_block(blk, {'id': '{{id+2}}'})
-        blk._logger.error = MagicMock()
+        blk.logger.error = MagicMock()
         blk.start()
         blk.process_signals(signals)
-        self.assertEqual(blk._logger.error.call_count, 1)
+        self.assertEqual(blk.logger.error.call_count, 1)
         self.assertEqual(mock_post.call_count, 0)
         blk.stop()
 
@@ -51,9 +51,9 @@ class TestTwitterFavorite(NIOBlockTestCase):
         signals = [Signal({'id': 'asdf'})]
         blk = TwitterFavorite()
         self.configure_block(blk, {})
-        blk._logger.error = MagicMock()
+        blk.logger.error = MagicMock()
         blk.start()
         blk.process_signals(signals)
-        self.assertEqual(blk._logger.error.call_count, 1)
+        self.assertEqual(blk.logger.error.call_count, 1)
         self.assertEqual(mock_post.call_count, 0)
         blk.stop()

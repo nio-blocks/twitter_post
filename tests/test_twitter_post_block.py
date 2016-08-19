@@ -1,8 +1,8 @@
 import json
 from unittest.mock import patch
 from ..twitter_post_block import TwitterPost
-from nio.common.signal.base import Signal
-from nio.util.support.block_test_case import NIOBlockTestCase
+from nio.signal.base import Signal
+from nio.testing.block_test_case import NIOBlockTestCase
 
 
 class TestTwitterPost(NIOBlockTestCase):
@@ -39,6 +39,3 @@ class TestTwitterPost(NIOBlockTestCase):
         self.assertEqual(mock_post.call_count, len(signals))
 
         blk.stop()
-
-
-

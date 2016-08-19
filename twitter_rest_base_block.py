@@ -1,9 +1,9 @@
 import requests
 from requests_oauthlib import OAuth1
-from nio.common.block.base import Block
-from nio.metadata.properties.object import ObjectProperty
-from nio.metadata.properties.holder import PropertyHolder
-from nio.metadata.properties.string import StringProperty
+from nio.block.base import Block
+from nio.properties.object import ObjectProperty
+from nio.properties.holder import PropertyHolder
+from nio.properties.string import StringProperty
 
 
 VERIFY_CREDS_URL = ('https://api.twitter.com/1.1/'
@@ -43,15 +43,15 @@ class TwitterRestBase(Block):
 
         """
         try:
-            auth = OAuth1(self.creds.consumer_key,
-                          self.creds.app_secret,
-                          self.creds.oauth_token,
-                          self.creds.oauth_token_secret)
+            auth = OAuth1(self.creds().consumer_key(),
+                          self.creds().app_secret(),
+                          self.creds().oauth_token(),
+                          self.creds().oauth_token_secret())
             resp = requests.get(VERIFY_CREDS_URL, auth=auth)
             if resp.status_code != 200:
                 raise Exception("Status %s" % resp.status_code)
             return auth
         except Exception:
-            self._logger.error("Authentication Failed "
+            self.logger.error("Authentication Failed "
                                "for consumer key: %s" %
-                               self.creds.consumer_key)
+                               self.creds().consumer_key())
