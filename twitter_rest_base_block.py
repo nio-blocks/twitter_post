@@ -15,10 +15,10 @@ class TwitterCreds(PropertyHolder):
     """ Property holder for Twitter OAuth credentials.
 
     """
-    consumer_key = StringProperty(title='API Key',
-                                  default="[[TWITTER_API_KEY]]")
-    app_secret = StringProperty(title='API Secret',
-                                default="[[TWITTER_API_SECRET]]")
+    consumer_key = StringProperty(title='Consumer Key',
+                                  default="[[TWITTER_CONSUMER_KEY]]")
+    app_secret = StringProperty(title='App Secret',
+                                default="[[TWITTER_APP_SECRET]]")
     oauth_token = StringProperty(title='Access Token',
                                  default="[[TWITTER_ACCESS_TOKEN]]")
     oauth_token_secret = \

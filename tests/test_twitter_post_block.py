@@ -15,7 +15,7 @@ class TestTwitterPost(NIOBlockTestCase):
             "status": "{{$foo}}"
         })
         blk.start()
-        mock_auth.assert_called_once()
+        self.assertEqual(mock_auth.call_count, 1)
 
         blk.process_signals(signals)
         mock_post.assert_called_once_with({'status': signals[0].foo})
@@ -34,7 +34,7 @@ class TestTwitterPost(NIOBlockTestCase):
             "status": "{{$foo}}"
         })
         blk.start()
-        mock_auth.assert_called_once()
+        self.assertEqual(mock_auth.call_count, 1)
         blk.process_signals(signals)
         self.assertEqual(mock_post.call_count, len(signals))
 
