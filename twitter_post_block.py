@@ -1,24 +1,24 @@
 import requests
 
 from .twitter_rest_base_block import TwitterRestBase
-from nio.common.discovery import Discoverable, DiscoverableType
-from nio.metadata.properties import ExpressionProperty
+from nio.util.discovery import discoverable
+from nio.properties import Property
 
 
 POST_URL = "https://api.twitter.com/1.1/statuses/update.json"
 
 
-@Discoverable(DiscoverableType.block)
+@discoverable
 class TwitterPost(TwitterRestBase):
 
-    status = ExpressionProperty(default='', title='Status Update')
+    status = Property(default='', title='Status Update')
 
     def process_signals(self, signals):
         for s in signals:
             try:
                 status = self.status(s)
             except Exception:
-                self._logger.exception("Status evaluation failed")
+                self.logger.exception("Status evaluation failed")
                 continue
 
             data = {'status': status}
@@ -31,13 +31,13 @@ class TwitterPost(TwitterRestBase):
         if status != 200:
             try:
                 response = response.json()
-                self._logger.error(
+                self.logger.error(
                     "Twitter post failed with status {0}".format(status)
                 )
                 if 186 in [e.get('code') for e in response.get('errors')]:
-                    self._logger.error("Status is over 140 characters")
+                    self.logger.error("Status is over 140 characters")
             except Exception:
-                self._logger.exception("Failed to process error response")
+                self.logger.exception("Failed to process error response")
         else:
-            self._logger.debug(
+            self.logger.debug(
                 "Posted '{0}' to Twitter!".format(payload['status']))
