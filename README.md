@@ -3,59 +3,84 @@ Blocks that interact with Twitter's [REST API](https://dev.twitter.com/rest/publ
 
 This repository includes blocks that will [post] to a Twitter account, [favorite] posts, and [retweet] statuses.
 
-# Twitter Base Block
+
+Twitter Base Block
+=======================
 Base block that connects to the Twitter REST API using OAuth.
 
-## Properties
+Properties
+----------
 * **consumer_key**: Twitter API key
 * **app_secret**: Twitter API secret
 * **oauth_token**: Twitter access token
 * **oauth_token_secret**: Twitter access token secret
 
-## Dependencies
+Dependencies
+----------
 * [requests_oauthlib](https://pypi.python.org/pypi/requests-oauthlib)
 
-# Twitter Post Block
+***
+
+Twitter Post Block
+=======================
 A block that posts a tweet to a Twitter account.
 
-## Properties
+Properties
+----------
 * **status**: content to post in tweet
 
-## Dependencies
+Dependencies
+----------
 None
 
-## Input
+Input
+----------
 Any list of signals.
 
-## Output
+Output
+----------
 None. The `status` content is posted to Twitter.
 
-# Twitter Favorite Block
+***
+
+Twitter Favorite Block
+=======================
 A block that favorites tweets on Twitter.
 
-## Properties
+Properties
+----------
 * **id**: identifier for specified tweet to favorite
 
-## Dependencies
+Dependencies
+----------
 None
 
-## Input
+Input
+----------
 Any list of signals.
 
-## Output
+Output
+----------
 None. The tweet with the correct `id` is favorited.
 
-# Twitter Retweet Block
+***
+
+Twitter Retweet Block
+=======================
 A block that retweets posts on Twitter.
 
-## Properties
+Properties
+----------
 * **id**: identifier for specified post to retweet
 
-## Dependencies
+Dependencies
+----------
 None
 
-## Input
+Input
+----------
 Any list of signals.
 
-## Output
+Output
+----------
 None. The post with the correct `id` is retweeted.

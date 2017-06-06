@@ -1,0 +1,22 @@
+{
+  "nio/Twitter Favorite Block": {
+    "Language": "Python",
+    "Reference": "github.com/nio-blocks/twitter_rest.git@v1.0.0",
+    "Version": "1.0.0"
+  },
+  "nio/Twitter Post Block": {
+    "Language": "Python",
+    "Reference": "github.com/nio-blocks/twitter_rest.git@v1.0.0",
+    "Version": "1.0.0"
+  },
+  "nio/Twitter Base Block": {
+    "Language": "Python",
+    "Reference": "github.com/nio-blocks/twitter_rest.git@v1.0.0",
+    "Version": "1.0.0"
+  },
+  "nio/Twitter Retweet Block": {
+    "Language": "Python",
+    "Reference": "github.com/nio-blocks/twitter_rest.git@v1.0.0",
+    "Version": "1.0.0"
+  }
+}
