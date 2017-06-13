@@ -1,70 +1,75 @@
 {
-  "nio/Twitter Favorite Block": {
-    "Dependencies": [
-      "None"
-    ],
-    "Version": "1.0.0",
-    "Description": "A block that favorites tweets on Twitter.",
-    "Properties": {
-      "id": {
-        "description": "identifier for specified tweet to favorite"
-      }
+    "nio/Twitter Favorite Block": {
+        "Version": "1.0.0",
+        "Description": "A block that favorites tweets on Twitter.",
+        "Properties": {
+            "id": {
+                "description": "identifier for specified tweet to favorite"
+            }
+        },
+        "Category": "WebService",
+        "Input": {
+            "Description": "Any list of signals."
+        },
+        "Output": {
+            "Description": "None. The tweet with the correct `id` is favorited."
+        }
     },
-    "Output": "None. The tweet with the correct `id` is favorited.",
-    "Category": "WebService",
-    "Input": "Any list of signals."
-  },
-  "nio/Twitter Post Block": {
-    "Dependencies": [
-      "None"
-    ],
-    "Version": "1.0.0",
-    "Description": "A block that posts a tweet to a Twitter account.",
-    "Properties": {
-      "status": {
-        "description": "content to post in tweet"
-      }
+    "nio/Twitter Retweet Block": {
+        "Version": "1.0.0",
+        "Description": "A block that retweets posts on Twitter.",
+        "Properties": {
+            "id": {
+                "description": "identifier for specified post to retweet"
+            }
+        },
+        "Category": "WebService",
+        "Input": {
+            "Description": "Any list of signals."
+        },
+        "Output": {
+            "Description": "None. The post with the correct `id` is retweeted."
+        }
     },
-    "Input": "Any list of signals.",
-    "Category": "WebService",
-    "Output": "None. The `status` content is posted to Twitter."
-  },
-  "nio/Twitter Base Block": {
-    "Properties": {
-      "oauth_token": {
-        "description": "Twitter access token"
-      },
-      "consumer_key": {
-        "description": "Twitter API key"
-      },
-      "app_secret": {
-        "description": "Twitter API secret"
-      },
-      "oauth_token_secret": {
-        "description": "Twitter access token secret"
-      }
+    "nio/Twitter Base Block": {
+        "Version": "1.0.0",
+        "Properties": {
+            "consumer_key": {
+                "description": "Twitter API key"
+            },
+            "app_secret": {
+                "description": "Twitter API secret"
+            },
+            "oauth_token": {
+                "description": "Twitter access token"
+            },
+            "oauth_token_secret": {
+                "description": "Twitter access token secret"
+            }
+        },
+        "Description": "Base block that connects to the Twitter REST API using OAuth.",
+        "Category": "WebService",
+        "Input": {
+            "Description": {}
+        },
+        "Output": {
+            "Description": {}
+        }
     },
-    "Dependencies": [
-      "* [requests_oauthlib](https://pypi.python.org/pypi/requests-oauthlib)",
-      "Twitter Post Block"
-    ],
-    "Version": "1.0.0",
-    "Category": "WebService",
-    "Description": "Base block that connects to the Twitter REST API using OAuth."
-  },
-  "nio/Twitter Retweet Block": {
-    "Dependencies": [
-      "None"
-    ],
-    "Version": "1.0.0",
-    "Description": "A block that retweets posts on Twitter.",
-    "Category": "WebService",
-    "Properties": {
-      "id": {
-        "description": "identifier for specified post to retweet"
-      }
-    },
-    "Output": "None. The post with the correct `id` is retweeted.",
-    "Input": "Any list of signals."
-  }
+    "nio/Twitter Post Block": {
+        "Input": {
+            "Description": "Any list of signals."
+        },
+        "Description": "A block that posts a tweet to a Twitter account.",
+        "Properties": {
+            "status": {
+                "description": "content to post in tweet"
+            }
+        },
+        "Category": "WebService",
+        "Version": "1.0.0",
+        "Output": {
+            "Description": "None. The `status` content is posted to Twitter."
+        }
+    }
 }
