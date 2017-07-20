@@ -12,7 +12,7 @@ class TestTwitterPost(NIOBlockTestCase):
         signals = [Signal({'foo': 'test signal'})]
         blk = TwitterPost()
         self.configure_block(blk, {
-            "status": "{{$foo}}"
+            "status_update": "{{$foo}}"
         })
         blk.start()
         self.assertEqual(mock_auth.call_count, 1)
@@ -31,7 +31,7 @@ class TestTwitterPost(NIOBlockTestCase):
         ]
         blk = TwitterPost()
         self.configure_block(blk, {
-            "status": "{{$foo}}"
+            "status_update": "{{$foo}}"
         })
         blk.start()
         self.assertEqual(mock_auth.call_count, 1)
