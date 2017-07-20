@@ -11,22 +11,21 @@ POST_URL = "https://api.twitter.com/1.1/statuses/update.json"
 @discoverable
 class TwitterPost(TwitterRestBase):
 
-    status = Property(default='', title='Status Update')
+    status_update = Property(default='', title='Status Update')
 
     def process_signals(self, signals):
         for s in signals:
             try:
-                status = self.status(s)
+                status_update = self.status_update(s)
             except Exception:
                 self.logger.exception("Status evaluation failed")
                 continue
 
-            data = {'status': status}
+            data = {'status_update': status_update}
             self._post_tweet(data)
 
     def _post_tweet(self, payload):
-        response = requests.post(POST_URL, data=payload, auth=self._auth)
-
+        response = requests.post(POST_URL, data={'status':payload['status_update']}, auth=self._auth)
         status = response.status_code
         if status != 200:
             try:
@@ -40,4 +39,4 @@ class TwitterPost(TwitterRestBase):
                 self.logger.exception("Failed to process error response")
         else:
             self.logger.debug(
-                "Posted '{0}' to Twitter!".format(payload['status']))
+                "Posted '{0}' to Twitter!".format(payload['status_update']))
