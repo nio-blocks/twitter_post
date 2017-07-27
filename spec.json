@@ -1,75 +1,70 @@
 {
-    "nio/Twitter Favorite Block": {
-        "Version": "1.0.0",
-        "Description": "A block that favorites tweets on Twitter.",
-        "Properties": {
-            "id": {
-                "description": "identifier for specified tweet to favorite"
-            }
+  "nio/TwitterFavorite": {
+    "Commands": {},
+    "Dependencies": [],
+    "Description": "",
+    "Input": "",
+    "Output": "",
+    "Properties": {
+      "Credentials": {
+        "default": {
+          "app_secret": "[[TWITTER_APP_SECRET]]",
+          "consumer_key": "[[TWITTER_CONSUMER_KEY]]",
+          "oauth_token": "[[TWITTER_ACCESS_TOKEN]]",
+          "oauth_token_secret": "[[TWITTER_ACCESS_TOKEN_SECRET]]"
         },
-        "Category": "WebService",
-        "Input": {
-            "Description": "Any list of signals."
-        },
-        "Output": {
-            "Description": "None. The tweet with the correct `id` is favorited."
-        }
+        "description": ""
+      },
+      "Tweet ID": {
+        "default": "{{$id}}",
+        "description": ""
+      }
     },
-    "nio/Twitter Retweet Block": {
-        "Version": "1.0.0",
-        "Description": "A block that retweets posts on Twitter.",
-        "Properties": {
-            "id": {
-                "description": "identifier for specified post to retweet"
-            }
+    "Version": "0.0.0"
+  },
+  "nio/TwitterPost": {
+    "Commands": {},
+    "Dependencies": [],
+    "Description": "",
+    "Input": "",
+    "Output": "",
+    "Properties": {
+      "Credentials": {
+        "default": {
+          "app_secret": "[[TWITTER_APP_SECRET]]",
+          "consumer_key": "[[TWITTER_CONSUMER_KEY]]",
+          "oauth_token": "[[TWITTER_ACCESS_TOKEN]]",
+          "oauth_token_secret": "[[TWITTER_ACCESS_TOKEN_SECRET]]"
         },
-        "Category": "WebService",
-        "Input": {
-            "Description": "Any list of signals."
-        },
-        "Output": {
-            "Description": "None. The post with the correct `id` is retweeted."
-        }
+        "description": ""
+      },
+      "Status Update": {
+        "description": ""
+      }
     },
-    "nio/Twitter Base Block": {
-        "Version": "1.0.0",
-        "Properties": {
-            "consumer_key": {
-                "description": "Twitter API key"
-            },
-            "app_secret": {
-                "description": "Twitter API secret"
-            },
-            "oauth_token": {
-                "description": "Twitter access token"
-            },
-            "oauth_token_secret": {
-                "description": "Twitter access token secret"
-            }
+    "Version": "0.0.0"
+  },
+  "nio/TwitterRetweet": {
+    "Commands": {},
+    "Dependencies": [],
+    "Description": "",
+    "Input": "",
+    "Output": "",
+    "Properties": {
+      "Credentials": {
+        "default": {
+          "app_secret": "[[TWITTER_APP_SECRET]]",
+          "consumer_key": "[[TWITTER_CONSUMER_KEY]]",
+          "oauth_token": "[[TWITTER_ACCESS_TOKEN]]",
+          "oauth_token_secret": "[[TWITTER_ACCESS_TOKEN_SECRET]]"
         },
-        "Description": "Base block that connects to the Twitter REST API using OAuth.",
-        "Category": "WebService",
-        "Input": {
-            "Description": {}
-        },
-        "Output": {
-            "Description": {}
-        }
+        "description": ""
+      },
+      "Tweet ID": {
+        "default": "{{$id}}",
+        "description": ""
+      }
     },
-    "nio/Twitter Post Block": {
-        "Input": {
-            "Description": "Any list of signals."
-        },
-        "Description": "A block that posts a tweet to a Twitter account.",
-        "Properties": {
-            "status": {
-                "description": "content to post in tweet"
-            }
-        },
-        "Category": "WebService",
-        "Version": "1.0.0",
-        "Output": {
-            "Description": "None. The `status` content is posted to Twitter."
-        }
-    }
+    "Version": "0.0.0"
+  }
 }
