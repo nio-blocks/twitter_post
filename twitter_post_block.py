@@ -11,17 +11,17 @@ POST_URL = "https://api.twitter.com/1.1/statuses/update.json"
 @discoverable
 class TwitterPost(TwitterRestBase):
 
-    status = Property(default='', title='Status Update')
+    status_update = Property(default='', title='Status Update')
 
     def process_signals(self, signals):
         for s in signals:
             try:
-                status = self.status(s)
+                status_update = self.status_update(s)
             except Exception:
                 self.logger.exception("Status evaluation failed")
                 continue
 
-            data = {'status': status}
+            data = {'status': status_update}
             self._post_tweet(data)
 
     def _post_tweet(self, payload):
