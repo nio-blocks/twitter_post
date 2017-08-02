@@ -1,70 +1,26 @@
 {
   "nio/TwitterFavorite": {
-    "Commands": {},
-    "Dependencies": [],
-    "Description": "",
-    "Input": "",
-    "Output": "",
-    "Properties": {
-      "Credentials": {
-        "default": {
-          "app_secret": "[[TWITTER_APP_SECRET]]",
-          "consumer_key": "[[TWITTER_CONSUMER_KEY]]",
-          "oauth_token": "[[TWITTER_ACCESS_TOKEN]]",
-          "oauth_token_secret": "[[TWITTER_ACCESS_TOKEN_SECRET]]"
-        },
-        "description": ""
-      },
-      "Tweet ID": {
-        "default": "{{$id}}",
-        "description": ""
-      }
-    },
-    "Version": "0.0.0"
+    "version": "0.0.1",
+    "description": "",
+    "inputs": {},
+    "outputs": {},
+    "properties": {},
+    "commands": {}
   },
   "nio/TwitterPost": {
-    "Commands": {},
-    "Dependencies": [],
-    "Description": "",
-    "Input": "",
-    "Output": "",
-    "Properties": {
-      "Credentials": {
-        "default": {
-          "app_secret": "[[TWITTER_APP_SECRET]]",
-          "consumer_key": "[[TWITTER_CONSUMER_KEY]]",
-          "oauth_token": "[[TWITTER_ACCESS_TOKEN]]",
-          "oauth_token_secret": "[[TWITTER_ACCESS_TOKEN_SECRET]]"
-        },
-        "description": ""
-      },
-      "Status Update": {
-        "description": ""
-      }
-    },
-    "Version": "0.0.0"
+    "version": "0.0.1",
+    "description": "",
+    "inputs": {},
+    "outputs": {},
+    "properties": {},
+    "commands": {}
   },
   "nio/TwitterRetweet": {
-    "Commands": {},
-    "Dependencies": [],
-    "Description": "",
-    "Input": "",
-    "Output": "",
-    "Properties": {
-      "Credentials": {
-        "default": {
-          "app_secret": "[[TWITTER_APP_SECRET]]",
-          "consumer_key": "[[TWITTER_CONSUMER_KEY]]",
-          "oauth_token": "[[TWITTER_ACCESS_TOKEN]]",
-          "oauth_token_secret": "[[TWITTER_ACCESS_TOKEN_SECRET]]"
-        },
-        "description": ""
-      },
-      "Tweet ID": {
-        "default": "{{$id}}",
-        "description": ""
-      }
-    },
-    "Version": "0.0.0"
+    "version": "0.0.1",
+    "description": "",
+    "inputs": {},
+    "outputs": {},
+    "properties": {},
+    "commands": {}
   }
 }
