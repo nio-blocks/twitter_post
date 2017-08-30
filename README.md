@@ -1,86 +1,63 @@
-# Twitter REST API Blocks
-Blocks that interact with Twitter's [REST API](https://dev.twitter.com/rest/public).
-
-This repository includes blocks that will [post] to a Twitter account, [favorite] posts, and [retweet] statuses.
-
-
-Twitter Base Block
-=======================
-Base block that connects to the Twitter REST API using OAuth.
+TwitterFavorite
+===============
+Favorite tweets on Twitter.
 
 Properties
 ----------
-* **consumer_key**: Twitter API key
-* **app_secret**: Twitter API secret
-* **oauth_token**: Twitter access token
-* **oauth_token_secret**: Twitter access token secret
+- **creds**: Twitter api app credentials.
+- **id**: Identifier for tweet to favorite.
 
-Dependencies
-----------
-* [requests_oauthlib](https://pypi.python.org/pypi/requests-oauthlib)
+Inputs
+------
+- **default**: Any list of signals.
 
-***
-
-Twitter Post Block
-=======================
-A block that posts a tweet to a Twitter account.
-
-Properties
-----------
-* **status**: content to post in tweet
-
-Dependencies
-----------
+Outputs
+-------
 None
 
-Input
-----------
-Any list of signals.
+Commands
+--------
+None
 
-Output
-----------
-None. The `status` content is posted to Twitter.
-
-***
-
-Twitter Favorite Block
-=======================
-A block that favorites tweets on Twitter.
+TwitterPost
+===========
+Post tweets on behalf of a Twitter account.
 
 Properties
 ----------
-* **id**: identifier for specified tweet to favorite
+- **creds**: Twitter api app credentials.
+- **status_update**: Message content to post in tweet.
 
-Dependencies
-----------
+Inputs
+------
+- **default**: Any list of signals.
+
+Outputs
+-------
 None
 
-Input
-----------
-Any list of signals.
+Commands
+--------
+None
 
-Output
-----------
-None. The tweet with the correct `id` is favorited.
-
-***
-
-Twitter Retweet Block
-=======================
-A block that retweets posts on Twitter.
+TwitterRetweet
+==============
+Retweet posts on Twitter.
 
 Properties
 ----------
-* **id**: identifier for specified post to retweet
+- **creds**: Twitter api app credentials.
+- **id**: Identifier for tweet to retweet.
 
-Dependencies
-----------
+Inputs
+------
+- **default**: Any list of signals.
+
+Outputs
+-------
 None
 
-Input
-----------
-Any list of signals.
+Commands
+--------
+None
 
-Output
-----------
-None. The post with the correct `id` is retweeted.

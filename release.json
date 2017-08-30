@@ -1,17 +1,17 @@
 {
   "nio/TwitterFavorite": {
     "language": "Python",
-    "version": "0.0.1",
-    "url": "git://github.com/nio-blocks/twitter_rest.git"
+    "url": "git://github.com/nio-blocks/twitter_rest.git",
+    "version": "1.0.0"
   },
   "nio/TwitterPost": {
     "language": "Python",
-    "version": "0.0.1",
-    "url": "git://github.com/nio-blocks/twitter_rest.git"
+    "url": "git://github.com/nio-blocks/twitter_rest.git",
+    "version": "1.0.0"
   },
   "nio/TwitterRetweet": {
     "language": "Python",
-    "version": "0.0.1",
-    "url": "git://github.com/nio-blocks/twitter_rest.git"
+    "url": "git://github.com/nio-blocks/twitter_rest.git",
+    "version": "1.0.0"
   }
 }
