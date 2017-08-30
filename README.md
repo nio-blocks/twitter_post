@@ -19,6 +19,11 @@ Commands
 --------
 None
 
+Dependencies
+------------
+-   [requests](https://pypi.python.org/pypi/requests)
+-   [requests_oauthlib](https://pypi.python.org/pypi/requests-oauthlib)
+
 TwitterPost
 ===========
 Post tweets on behalf of a Twitter account.
@@ -40,6 +45,11 @@ Commands
 --------
 None
 
+Dependencies
+------------
+-   [requests](https://pypi.python.org/pypi/requests)
+-   [requests_oauthlib](https://pypi.python.org/pypi/requests-oauthlib)
+
 TwitterRetweet
 ==============
 Retweet posts on Twitter.
@@ -60,4 +70,9 @@ None
 Commands
 --------
 None
+
+Dependencies
+------------
+-   [requests](https://pypi.python.org/pypi/requests)
+-   [requests_oauthlib](https://pypi.python.org/pypi/requests-oauthlib)
 
