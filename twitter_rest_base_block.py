@@ -1,9 +1,9 @@
 import requests
 from requests_oauthlib import OAuth1
-from nio.block.base import Block
-from nio.properties.object import ObjectProperty
-from nio.properties.holder import PropertyHolder
-from nio.properties.string import StringProperty
+
+from nio import TerminatorBlock
+from nio.properties import ObjectProperty, PropertyHolder, StringProperty
+from nio.util.discovery import not_discoverable
 
 
 VERIFY_CREDS_URL = ('https://api.twitter.com/1.1/'
@@ -26,7 +26,8 @@ class TwitterCreds(PropertyHolder):
                        default="[[TWITTER_ACCESS_TOKEN_SECRET]]")
 
 
-class TwitterRestBase(Block):
+@not_discoverable
+class TwitterRestBase(TerminatorBlock):
 
     creds = ObjectProperty(TwitterCreds, title='Credentials')
 
@@ -52,6 +53,5 @@ class TwitterRestBase(Block):
                 raise Exception("Status %s" % resp.status_code)
             return auth
         except Exception:
-            self.logger.error("Authentication Failed "
-                               "for consumer key: %s" %
-                               self.creds().consumer_key())
+            self.logger.error("Authentication Failed for consumer key: {}"
+                              .format(self.creds().consumer_key()))

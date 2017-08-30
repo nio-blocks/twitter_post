@@ -1,16 +1,15 @@
 import requests
 
+from nio.properties import Property, VersionProperty
 from .twitter_rest_base_block import TwitterRestBase
-from nio.util.discovery import discoverable
-from nio.properties import Property
 
 
 POST_URL = "https://api.twitter.com/1.1/statuses/update.json"
 
 
-@discoverable
 class TwitterPost(TwitterRestBase):
 
+    version = VersionProperty("1.0.0")
     status_update = Property(default='', title='Status Update')
 
     def process_signals(self, signals):

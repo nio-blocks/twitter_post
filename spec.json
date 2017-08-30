@@ -1,26 +1,92 @@
 {
   "nio/TwitterFavorite": {
-    "version": "0.0.1",
-    "description": "",
-    "inputs": {},
+    "version": "1.0.0",
+    "description": "Favorite tweets on Twitter.",
+    "properties": {
+      "creds": {
+        "title": "Credentials",
+        "type": "ObjectType",
+        "description": "Twitter api app credentials.",
+        "default": {
+          "app_secret": "[[TWITTER_APP_SECRET]]",
+          "consumer_key": "[[TWITTER_CONSUMER_KEY]]",
+          "oauth_token": "[[TWITTER_ACCESS_TOKEN]]",
+          "oauth_token_secret": "[[TWITTER_ACCESS_TOKEN_SECRET]]"
+        }
+      },
+      "id": {
+        "title": "Tweet ID",
+        "type": "Type",
+        "description": "Identifier for tweet to favorite.",
+        "default": "{{$id}}"
+      }
+    },
+    "inputs": {
+      "default": {
+        "description": "Any list of signals."
+      }
+    },
     "outputs": {},
-    "properties": {},
     "commands": {}
   },
   "nio/TwitterPost": {
-    "version": "0.0.1",
-    "description": "",
-    "inputs": {},
+    "version": "1.0.0",
+    "description": "Post tweets on behalf of a Twitter account.",
+    "properties": {
+      "creds": {
+        "title": "Credentials",
+        "type": "ObjectType",
+        "description": "Twitter api app credentials.",
+        "default": {
+          "app_secret": "[[TWITTER_APP_SECRET]]",
+          "consumer_key": "[[TWITTER_CONSUMER_KEY]]",
+          "oauth_token": "[[TWITTER_ACCESS_TOKEN]]",
+          "oauth_token_secret": "[[TWITTER_ACCESS_TOKEN_SECRET]]"
+        }
+      },
+      "status_update": {
+        "title": "Status Update",
+        "type": "Type",
+        "description": "Message content to post in tweet.",
+        "default": ""
+      }
+    },
+    "inputs": {
+      "default": {
+        "description": "Any list of signals."
+      }
+    },
     "outputs": {},
-    "properties": {},
     "commands": {}
   },
   "nio/TwitterRetweet": {
-    "version": "0.0.1",
-    "description": "",
-    "inputs": {},
+    "version": "1.0.0",
+    "description": "Retweet posts on Twitter.",
+    "properties": {
+      "creds": {
+        "title": "Credentials",
+        "type": "ObjectType",
+        "description": "Twitter api app credentials.",
+        "default": {
+          "app_secret": "[[TWITTER_APP_SECRET]]",
+          "consumer_key": "[[TWITTER_CONSUMER_KEY]]",
+          "oauth_token": "[[TWITTER_ACCESS_TOKEN]]",
+          "oauth_token_secret": "[[TWITTER_ACCESS_TOKEN_SECRET]]"
+        }
+      },
+      "id": {
+        "title": "Tweet ID",
+        "type": "Type",
+        "description": "Identifier for tweet to retweet.",
+        "default": "{{$id}}"
+      }
+    },
+    "inputs": {
+      "default": {
+        "description": "Any list of signals."
+      }
+    },
     "outputs": {},
-    "properties": {},
     "commands": {}
   }
 }
