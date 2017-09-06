@@ -2,6 +2,9 @@
   "nio/TwitterFavorite": {
     "version": "1.0.0",
     "description": "Favorite tweets on Twitter.",
+    "categories": [
+      "Social Media"
+    ],
     "properties": {
       "creds": {
         "title": "Credentials",
@@ -32,6 +35,9 @@
   "nio/TwitterPost": {
     "version": "1.0.0",
     "description": "Post tweets on behalf of a Twitter account.",
+    "categories": [
+      "Social Media"
+    ],
     "properties": {
       "creds": {
         "title": "Credentials",
@@ -62,6 +68,9 @@
   "nio/TwitterRetweet": {
     "version": "1.0.0",
     "description": "Retweet posts on Twitter.",
+    "categories": [
+      "Social Media"
+    ],
     "properties": {
       "creds": {
         "title": "Credentials",
