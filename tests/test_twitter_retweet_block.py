@@ -9,21 +9,21 @@ class TestTwitterRetweet(NIOBlockTestCase):
     @patch.object(TwitterRetweet, '_authorize')
     @patch.object(TwitterRetweet, '_retweet_tweet')
     def test_process_signal(self, mock_post, mock_auth):
-        signals = [Signal({'id': 123})]
+        signals = [Signal({'tweet_id': 123})]
         blk = TwitterRetweet()
         self.configure_block(blk, {})
         blk.start()
         blk.process_signals(signals)
-        mock_post.assert_called_once_with(signals[0].id)
+        mock_post.assert_called_once_with(signals[0].tweet_id)
         blk.stop()
 
     @patch.object(TwitterRetweet, '_authorize')
     @patch.object(TwitterRetweet, '_retweet_tweet')
     def test_process_multiple(self, mock_post, mock_auth):
         signals = [
-            Signal({'id': 123}),
-            Signal({'id': 456}),
-            Signal({'id': 789})
+            Signal({'tweet_id': 123}),
+            Signal({'tweet_id': 456}),
+            Signal({'tweet_id': 789})
         ]
         blk = TwitterRetweet()
         self.configure_block(blk, {})
@@ -35,9 +35,9 @@ class TestTwitterRetweet(NIOBlockTestCase):
     @patch.object(TwitterRetweet, '_authorize')
     @patch.object(TwitterRetweet, '_retweet_tweet')
     def test_bad_config(self, mock_post, mock_auth):
-        signals = [Signal({'id': 123})]
+        signals = [Signal({'tweet_id': 123})]
         blk = TwitterRetweet()
-        self.configure_block(blk, {'id': '{{id+2}}'})
+        self.configure_block(blk, {'tweet_id': '{{tweet_id+2}}'})
         blk.logger.error = MagicMock()
         blk.start()
         blk.process_signals(signals)
@@ -48,7 +48,7 @@ class TestTwitterRetweet(NIOBlockTestCase):
     @patch.object(TwitterRetweet, '_authorize')
     @patch.object(TwitterRetweet, '_retweet_tweet')
     def test_bad_id(self, mock_post, mock_auth):
-        signals = [Signal({'id': 'asdf'})]
+        signals = [Signal({'tweet_id': 'asdf'})]
         blk = TwitterRetweet()
         self.configure_block(blk, {})
         blk.logger.error = MagicMock()

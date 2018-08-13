@@ -10,12 +10,12 @@ POST_URL = "https://api.twitter.com/1.1/statuses/retweet/{}.json"
 class TwitterRetweet(TwitterRestBase):
 
     version = VersionProperty("1.0.0")
-    id = Property(default='{{$id}}', title='Tweet ID')
+    tweet_id = Property(default='{{$tweet_id}}', title='Tweet ID')
 
     def process_signals(self, signals):
         for s in signals:
             try:
-                id = self.id(s)
+                tweet_id = self.tweet_id(s)
             except Exception as e:
                 self.logger.error(
                     "ID evaluation failed: {0}: {1}".format(
@@ -23,16 +23,16 @@ class TwitterRetweet(TwitterRestBase):
                 )
                 continue
             try:
-                id = int(id)
+                tweet_id = int(tweet_id)
             except Exception as e:
                 self.logger.error(
-                    "ID {} is not an integer: {}".format(id, e)
+                    "ID {} is not an integer: {}".format(tweet_id, e)
                 )
                 continue
-            self._retweet_tweet(id)
+            self._retweet_tweet(tweet_id)
 
-    def _retweet_tweet(self, id):
-        response = requests.post(POST_URL.format(id), auth=self._auth)
+    def _retweet_tweet(self, tweet_id):
+        response = requests.post(POST_URL.format(tweet_id), auth=self._auth)
         status = response.status_code
         if status == 403:
             self.logger.error(
@@ -45,5 +45,5 @@ class TwitterRetweet(TwitterRestBase):
             )
         else:
             self.logger.debug(
-                "Retweeted tweet with id {}.".format(payload['id'])
+                "Retweeted tweet with id {}.".format(payload['tweet_id'])
             )
