@@ -13,9 +13,9 @@ class TwitterFavorite(TwitterRestBase):
     tweet_id = Property(default='{{$tweet_id}}', title='Tweet ID')
 
     def process_signals(self, signals):
-        for s in signals:
+        for signal in signals:
             try:
-                tweet_id = self.tweet_id(s)
+                tweet_id = self.tweet_id(signal)
             except Exception as e:
                 self.logger.error(
                     "ID evaluation failed: {0}: {1}".format(
@@ -29,21 +29,21 @@ class TwitterFavorite(TwitterRestBase):
                     "ID {} is not an integer: {}".format(tweet_id, e)
                 )
                 continue
-            data = {'tweet_id': tweet_id}
+            data = {'id': tweet_id}
             self._favorite_tweet(data)
 
     def _favorite_tweet(self, payload):
-        response = requests.post(POST_URL, data=payload,
-                                 auth=self._auth)
+        response = requests.post(POST_URL, data=payload, auth=self._auth)
         status = response.status_code
+
         if status != 200:
             self.logger.error(
                 "Twitter favorite {} failed with status {}".format(
-                    payload['tweet_id'],
+                    payload['id'],
                     status
                 )
             )
         else:
             self.logger.debug(
-                "Favorited tweet with id {}.".format(payload['tweet_id'])
+                "Favorited tweet with id {}.".format(payload['id'])
             )

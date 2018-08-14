@@ -14,7 +14,7 @@ class TestTwitterFavorite(NIOBlockTestCase):
         self.configure_block(blk, {})
         blk.start()
         blk.process_signals(signals)
-        mock_post.assert_called_once_with({'tweet_id': signals[0].tweet_id})
+        mock_post.assert_called_once_with({'id': signals[0].tweet_id})
         blk.stop()
 
     @patch.object(TwitterFavorite, '_authorize')
