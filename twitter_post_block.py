@@ -27,6 +27,7 @@ class TwitterPost(TwitterRestBase):
         response = requests.post(POST_URL, data=payload, auth=self._auth)
 
         status = response.status_code
+        self.logger.debug(status)
         if status != 200:
             try:
                 response = response.json()
