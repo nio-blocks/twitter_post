@@ -10,7 +10,7 @@ POST_URL = "https://api.twitter.com/1.1/statuses/retweet/{}.json"
 class TwitterRetweet(TwitterRestBase):
 
     version = VersionProperty("1.0.0")
-    tweet_id = Property(default='{{$tweet_id}}', title='Tweet ID')
+    tweet_id = Property(default='{{$id}}', title='Tweet ID')
 
     def process_signals(self, signals):
         for signal in signals:
