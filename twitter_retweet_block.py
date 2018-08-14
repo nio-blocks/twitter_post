@@ -29,11 +29,13 @@ class TwitterRetweet(TwitterRestBase):
                     "ID {} is not an integer: {}".format(tweet_id, e)
                 )
                 continue
+            # data = {'tweet_id': tweet_id}
             self._retweet_tweet(tweet_id)
 
     def _retweet_tweet(self, tweet_id):
         response = requests.post(POST_URL.format(tweet_id), auth=self._auth)
         status = response.status_code
+
         if status == 403:
             self.logger.error(
                 "Twitter post failed with status {0}. "
@@ -45,5 +47,5 @@ class TwitterRetweet(TwitterRestBase):
             )
         else:
             self.logger.debug(
-                "Retweeted tweet with id {}.".format(payload['tweet_id'])
+                "Retweeted tweet with id {}.".format(tweet_id)
             )
