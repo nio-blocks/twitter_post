@@ -45,5 +45,5 @@ class TwitterFavorite(TwitterRestBase):
             )
         else:
             self.logger.debug(
-                "Favorited tweet with id {}.".format(payload['sid'])
+                "Favorited tweet with id {}.".format(payload['id'])
             )
