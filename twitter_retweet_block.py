@@ -29,7 +29,7 @@ class TwitterRetweet(TwitterRestBase):
                     "ID {} is not an integer: {}".format(tweet_id, e)
                 )
                 continue
-            # data = {'tweet_id': tweet_id}
+
             self._retweet_tweet(tweet_id)
 
     def _retweet_tweet(self, tweet_id):
