@@ -13,9 +13,9 @@ class TwitterRetweet(TwitterRestBase):
     tweet_id = Property(default='{{$tweet_id}}', title='Tweet ID')
 
     def process_signals(self, signals):
-        for s in signals:
+        for signal in signals:
             try:
-                tweet_id = self.tweet_id(s)
+                tweet_id = self.tweet_id(signal)
             except Exception as e:
                 self.logger.error(
                     "ID evaluation failed: {0}: {1}".format(
