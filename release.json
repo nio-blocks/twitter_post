@@ -12,6 +12,6 @@
   "nio/TwitterRetweet": {
     "language": "Python",
     "url": "git://github.com/nio-blocks/twitter_rest.git",
-    "version": "1.0.0"
+    "version": "2.0.0"
   }
 }

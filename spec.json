@@ -66,7 +66,7 @@
     "commands": {}
   },
   "nio/TwitterRetweet": {
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Retweet posts on Twitter.",
     "categories": [
       "Social Media"
