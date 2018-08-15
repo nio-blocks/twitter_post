@@ -10,12 +10,12 @@ POST_URL = "https://api.twitter.com/1.1/favorites/create.json"
 class TwitterFavorite(TwitterRestBase):
 
     version = VersionProperty("1.0.0")
-    id = Property(default='{{$id}}', title='Tweet ID')
+    tweet_id = Property(default='{{$id}}', title='Tweet ID')
 
     def process_signals(self, signals):
-        for s in signals:
+        for signal in signals:
             try:
-                id = self.id(s)
+                tweet_id = self.tweet_id(signal)
             except Exception as e:
                 self.logger.error(
                     "ID evaluation failed: {0}: {1}".format(
@@ -23,19 +23,19 @@ class TwitterFavorite(TwitterRestBase):
                 )
                 continue
             try:
-                id = int(id)
+                tweet_id = int(tweet_id)
             except Exception as e:
                 self.logger.error(
-                    "ID {} is not an integer: {}".format(id, e)
+                    "ID {} is not an integer: {}".format(tweet_id, e)
                 )
                 continue
-            data = {'id': id}
+            data = {'id': tweet_id}
             self._favorite_tweet(data)
 
     def _favorite_tweet(self, payload):
-        response = requests.post(POST_URL, data=payload,
-                                 auth=self._auth)
+        response = requests.post(POST_URL, data=payload, auth=self._auth)
         status = response.status_code
+
         if status != 200:
             self.logger.error(
                 "Twitter favorite {} failed with status {}".format(

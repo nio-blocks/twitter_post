@@ -37,7 +37,7 @@ class TestTwitterRetweet(NIOBlockTestCase):
     def test_bad_config(self, mock_post, mock_auth):
         signals = [Signal({'id': 123})]
         blk = TwitterRetweet()
-        self.configure_block(blk, {'id': '{{id+2}}'})
+        self.configure_block(blk, {'tweet_id': '{{id+2}}'})
         blk.logger.error = MagicMock()
         blk.start()
         blk.process_signals(signals)

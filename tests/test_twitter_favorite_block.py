@@ -9,7 +9,7 @@ class TestTwitterFavorite(NIOBlockTestCase):
     @patch.object(TwitterFavorite, '_authorize')
     @patch.object(TwitterFavorite, '_favorite_tweet')
     def test_process_signal(self, mock_post, mock_auth):
-        signals = [Signal({'id': 123})]
+        signals = [Signal({'id': 145})]
         blk = TwitterFavorite()
         self.configure_block(blk, {})
         blk.start()
@@ -37,7 +37,7 @@ class TestTwitterFavorite(NIOBlockTestCase):
     def test_bad_config(self, mock_post, mock_auth):
         signals = [Signal({'id': 123})]
         blk = TwitterFavorite()
-        self.configure_block(blk, {'id': '{{id+2}}'})
+        self.configure_block(blk, {'tweet_id': '{{id+2}}'})
         blk.logger.error = MagicMock()
         blk.start()
         blk.process_signals(signals)
