@@ -9,7 +9,7 @@ POST_URL = "https://api.twitter.com/1.1/favorites/create.json"
 
 class TwitterFavorite(TwitterRestBase):
 
-    version = VersionProperty("1.0.0")
+    version = VersionProperty("2.0.0")
     tweet_id = Property(default='{{$id}}', title='Tweet ID')
 
     def process_signals(self, signals):
